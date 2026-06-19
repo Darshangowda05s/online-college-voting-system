@@ -15,12 +15,11 @@ router.get(
   authenticate,
   requireAdmin,
   (req, res) => {
-
     res.json({
+      success: true,
       message:
         "Welcome Admin",
     });
-
   }
 );
 

@@ -1,24 +1,19 @@
 import { Fingerprint, EyeOff, Stamp } from "lucide-react";
 import { GoogleLogin } from "@react-oauth/google";
+import api from "../services/api";
 
 function LoginCard() {
   const handleSuccess = async (credentialResponse) => {
     try {
-      const res = await fetch("/api/auth/google", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ credential: credentialResponse.credential }),
+      const res = await api.post("/auth/google", {
+        credential: credentialResponse.credential,
       });
 
-      if (!res.ok) {
-        throw new Error("Sign-in rejected by server");
-      }
+      console.log("Login Success:", res.data);
 
-      const { token } = await res.json();
-      // Store the server-issued JWT, not the raw Google credential.
-      // The server is the only thing that should decide identity + role.
-      localStorage.setItem("token", token);
-      window.location.href = "/elections";
+      // Reload app so AuthContext runs /users/me again
+      window.location.reload();
+
     } catch (err) {
       console.error("Login failed:", err);
     }
@@ -34,8 +29,9 @@ function LoginCard() {
         </div>
 
         <h1 className="font-serif text-2xl text-[#f0ebe0]">
-          CIT election portal
+          CIT Election Portal
         </h1>
+
         <p className="text-xs tracking-wider text-[#8a8275] mt-2 uppercase">
           Cambridge Institute of Technology
         </p>
@@ -44,7 +40,7 @@ function LoginCard() {
       <div className="mt-8 flex justify-center">
         <GoogleLogin
           onSuccess={handleSuccess}
-          onError={() => console.log("Login failed")}
+          onError={() => console.log("Login Failed")}
           theme="filled_black"
           shape="pill"
           width="280"
@@ -57,13 +53,20 @@ function LoginCard() {
 
       <div className="mt-7 pt-5 border-t border-[#3a352a] space-y-3">
         <div className="flex items-start gap-2.5">
-          <Fingerprint size={15} className="text-amber-600 mt-0.5 shrink-0" />
+          <Fingerprint
+            size={15}
+            className="text-amber-600 mt-0.5 shrink-0"
+          />
           <span className="text-xs text-[#a39a8a] leading-relaxed">
             Your identity is verified once, at sign-in
           </span>
         </div>
+
         <div className="flex items-start gap-2.5">
-          <EyeOff size={15} className="text-amber-600 mt-0.5 shrink-0" />
+          <EyeOff
+            size={15}
+            className="text-amber-600 mt-0.5 shrink-0"
+          />
           <span className="text-xs text-[#a39a8a] leading-relaxed">
             Your vote stays anonymous, always
           </span>
