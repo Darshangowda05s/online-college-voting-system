@@ -34,9 +34,11 @@ export const googleLogin = async (req, res) => {
 
     // OPTIONAL COLLEGE DOMAIN CHECK
 
-    if (!email.endsWith("@cambridge.edu.in")) {
+    const collegeDomain = process.env.COLLEGE_DOMAIN;
+
+    if (collegeDomain && !email.endsWith(collegeDomain)) {
       return res.status(403).json({
-        message: "Use college email",
+        message: `Use a valid ${collegeDomain} email`,
       });
     }
 
@@ -64,7 +66,7 @@ export const googleLogin = async (req, res) => {
       token: refreshToken,
       expiresAt: new Date(
         Date.now() +
-          7 * 24 * 60 * 60 * 1000
+        7 * 24 * 60 * 60 * 1000
       ),
     });
 
@@ -101,6 +103,23 @@ export const googleLogin = async (req, res) => {
 
     return res.status(500).json({
       message: "Login Failed",
+    });
+  }
+};
+
+export const logout = async (req, res) => {
+  try {
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
+
+    return res.status(200).json({
+      success: true,
+      message: "Logged out successfully",
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: "Logout failed",
     });
   }
 };

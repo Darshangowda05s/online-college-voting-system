@@ -46,9 +46,9 @@ export const getAllElections = async (req, res) => {
 
             ...(status === "ended"
               ? {
-                  voteCount:
-                    c.voteCount,
-                }
+                voteCount:
+                  c.voteCount,
+              }
               : {}),
           })
         ),
@@ -134,11 +134,11 @@ export const getElection = async (
               year: c.year,
 
               ...(status ===
-              "ended"
+                "ended"
                 ? {
-                    voteCount:
-                      c.voteCount,
-                  }
+                  voteCount:
+                    c.voteCount,
+                }
                 : {}),
             })
           ),
@@ -313,10 +313,10 @@ export const getResults = async (
               percentage:
                 totalVotes > 0
                   ? (
-                      (c.voteCount /
-                        totalVotes) *
-                      100
-                    ).toFixed(1)
+                    (c.voteCount /
+                      totalVotes) *
+                    100
+                  ).toFixed(1)
                   : 0,
             }))
             .sort(
@@ -354,11 +354,12 @@ export const createElection =
 
       res.status(500).json({
         success: false,
-        message:
-          err.message,
+        message: "Failed to create election",
       });
     }
   };
+
+
 
 // ADMIN - PUT /api/elections/:id
 export const updateElection =
@@ -390,8 +391,7 @@ export const updateElection =
 
       res.status(500).json({
         success: false,
-        message:
-          err.message,
+        message: "Failed to create election",
       });
     }
   };
@@ -423,8 +423,7 @@ export const deleteElection =
 
       res.status(500).json({
         success: false,
-        message:
-          err.message,
+        message: "Failed to create election",
       });
     }
   };
