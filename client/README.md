@@ -1,1 +1,1 @@
-Online voting system
+Online Voting System
