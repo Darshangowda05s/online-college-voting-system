@@ -4,19 +4,15 @@ import api from "../services/api";
 
 function LoginCard() {
   const handleSuccess = async (credentialResponse) => {
-    try {
-      const res = await api.post("/auth/google", {
-        credential: credentialResponse.credential,
-      });
+  try {
+    await api.post("/auth/google", {
+      credential: credentialResponse.credential,
+    });
 
-      console.log("Login Success:", res.data);
-
-      // Reload app so AuthContext runs /users/me again
-      window.location.reload();
-
-    } catch (err) {
-      console.error("Login failed:", err);
-    }
+    window.location.href = "/dashboard";
+  } catch (err) {
+    console.error("Login failed:", err);
+  }
   };
 
   return (
