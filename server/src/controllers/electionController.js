@@ -1,6 +1,20 @@
 import Election from "../models/Election.js";
 import Vote from "../models/Vote.js";
 
+// Helper function to consolidate vote queries
+const getUserVoteMap = async (userId, electionIds) => {
+  const votes = await Vote.find({
+    voter: userId,
+    election: { $in: electionIds },
+  });
+
+  const voteMap = {};
+  votes.forEach((vote) => {
+    voteMap[String(vote.election)] = vote;
+  });
+  return voteMap;
+};
+
 // GET /api/elections
 export const getAllElections = async (req, res) => {
   try {
@@ -10,16 +24,13 @@ export const getAllElections = async (req, res) => {
       startTime: 1,
     });
 
-    const votedElectionIds = await Vote.find({
-      voter: userId,
-    }).distinct("election");
-
-    const votedSet = new Set(
-      votedElectionIds.map(String)
-    );
+    // Single consolidated query for all votes
+    const electionIds = elections.map(el => el._id);
+    const voteMap = await getUserVoteMap(userId, electionIds);
 
     const data = elections.map((el) => {
       const status = el.computeStatus();
+      const userVote = voteMap[String(el._id)];
 
       return {
         _id: el._id,
@@ -31,9 +42,7 @@ export const getAllElections = async (req, res) => {
         totalVoters: el.voters.length,
         totalEligibleVoters:
           el.totalEligibleVoters,
-        hasVoted: votedSet.has(
-          String(el._id)
-        ),
+        hasVoted: !!userVote,
 
         candidates: el.candidates.map(
           (c) => ({
@@ -60,11 +69,11 @@ export const getAllElections = async (req, res) => {
       elections: data,
     });
   } catch (err) {
-    console.error(err);
+    console.error("Error fetching elections:", err);
 
     res.status(500).json({
       success: false,
-      message: "Server error",
+      message: "Failed to fetch elections",
     });
   }
 };
@@ -145,11 +154,11 @@ export const getElection = async (
       },
     });
   } catch (err) {
-    console.error(err);
+    console.error("Error fetching election:", err);
 
     res.status(500).json({
       success: false,
-      message: "Server error",
+      message: "Failed to fetch election",
     });
   }
 };
@@ -245,11 +254,11 @@ export const castVote = async (
         "Vote cast successfully!",
     });
   } catch (err) {
-    console.error(err);
+    console.error("Error casting vote:", err);
 
     res.status(500).json({
       success: false,
-      message: "Server error",
+      message: "Failed to cast vote",
     });
   }
 };
@@ -327,11 +336,11 @@ export const getResults = async (
       },
     });
   } catch (err) {
-    console.error(err);
+    console.error("Error fetching results:", err);
 
     res.status(500).json({
       success: false,
-      message: "Server error",
+      message: "Failed to fetch results",
     });
   }
 };
@@ -350,7 +359,7 @@ export const createElection =
         election,
       });
     } catch (err) {
-      console.error(err);
+      console.error("Error creating election:", err);
 
       res.status(500).json({
         success: false,
@@ -387,11 +396,11 @@ export const updateElection =
         election,
       });
     } catch (err) {
-      console.error(err);
+      console.error("Error updating election:", err);
 
       res.status(500).json({
         success: false,
-        message: "Failed to create election",
+        message: "Failed to update election",
       });
     }
   };
@@ -419,11 +428,11 @@ export const deleteElection =
           "Election deleted successfully",
       });
     } catch (err) {
-      console.error(err);
+      console.error("Error deleting election:", err);
 
       res.status(500).json({
         success: false,
-        message: "Failed to create election",
+        message: "Failed to delete election",
       });
     }
   };

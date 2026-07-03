@@ -13,13 +13,13 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+const corsOrigins = (process.env.CORS_ORIGINS || 
+  "http://localhost:5173,http://localhost:5174,http://localhost:5175"
+).split(",");
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "http://localhost:5175",
-    ],
+    origin: corsOrigins,
     credentials: true,
   })
 );

@@ -21,9 +21,11 @@ export const getMe = async (
       user,
     });
   } catch (error) {
+    console.error("Error fetching user:", error);
+
     res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Failed to fetch user",
     });
   }
 };

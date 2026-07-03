@@ -2,6 +2,7 @@ import express from "express";
 import {
     googleLogin,
     logout,
+    refresh,
 } from "../controllers/authController.js";
 import { authLimiter }
     from "../middleware/rateLimiter.js";
@@ -14,6 +15,7 @@ router.post(
     authLimiter,
     googleLogin
 );
+router.post("/refresh", refresh);
 router.post("/logout", logout);
 
 export default router;

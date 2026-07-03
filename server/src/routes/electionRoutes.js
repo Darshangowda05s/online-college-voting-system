@@ -12,6 +12,7 @@ import {
 
 import { authenticate } from "../middleware/authMiddleware.js";
 import { requireAdmin } from "../middleware/adminMiddleware.js";
+import { validateElection } from "../middleware/validationMiddleware.js";
 
 const router = express.Router();
 
@@ -25,8 +26,8 @@ router.post("/:id/vote", castVote);
 router.get("/:id/results", getResults);
 
 // Admin routes
-router.post("/", requireAdmin, createElection);
-router.put("/:id", requireAdmin, updateElection);
+router.post("/", requireAdmin, validateElection, createElection);
+router.put("/:id", requireAdmin, validateElection, updateElection);
 router.delete("/:id", requireAdmin, deleteElection);
 
 export default router;
