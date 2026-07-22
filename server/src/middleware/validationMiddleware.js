@@ -102,7 +102,7 @@ export const validateElection = (req, res, next) => {
         });
       }
 
-      if (!Number.isInteger(candidate.year) || candidate.year < 1 || candidate.year > 4) {
+      if (candidate.year < 1 || candidate.year > 4) {
         return res.status(400).json({
           success: false,
           message: `Candidate ${i + 1}: year must be an integer between 1 and 4`,
@@ -118,7 +118,7 @@ export const validateElection = (req, res, next) => {
       });
     }
 
-    if (!Number.isInteger(totalEligibleVoters) || totalEligibleVoters <= 0) {
+    if ( totalEligibleVoters <= 0) {
       return res.status(400).json({
         success: false,
         message: "Total eligible voters must be a positive integer",

@@ -1231,3 +1231,552 @@ a      { color: inherit; text-decoration: none; }
   flex-shrink: 0;
   margin-top: 2px;
 }
+
+
+/* ===========================
+   ADMIN PANEL
+=========================== */
+
+.admin-layout{
+    display:flex;
+    min-height:100vh;
+    background:#0b0d12;
+    color:white;
+}
+
+.admin-sidebar{
+    width:260px;
+    background:#10141b;
+    border-right:1px solid #232935;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:28px 20px;
+}
+
+.admin-logo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:40px;
+}
+
+.admin-logo-icon{
+    width:46px;
+    height:46px;
+    border-radius:14px;
+    background:#12d6a3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#08110f;
+}
+
+.admin-logo h2{
+    margin:0;
+    font-size:22px;
+}
+
+.admin-logo span{
+    color:#8d95a5;
+    font-size:13px;
+}
+
+.admin-nav{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.admin-nav-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:none;
+    border:none;
+    color:#9aa3b2;
+    padding:14px 16px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.25s;
+    font-size:15px;
+}
+
+.admin-nav-item:hover{
+    background:#171d26;
+    color:white;
+}
+
+.admin-nav-item.active{
+    background:#12d6a3;
+    color:#08110f;
+    font-weight:600;
+}
+
+.admin-logout{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#1b2029;
+    color:#ff6b6b;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.admin-logout:hover{
+    background:#282f3b;
+}
+
+.admin-main{
+    flex:1;
+    padding:40px;
+}
+
+.admin-main h1{
+    text-transform:capitalize;
+}
+
+.dashboard-home{
+    display:flex;
+    flex-direction:column;
+    gap:32px;
+}
+
+.dashboard-header h1{
+    font-size:2rem;
+    margin-bottom:8px;
+}
+
+.dashboard-header p{
+    color:#8b8b8b;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.stat-card{
+    background:#181818;
+    border:1px solid #2b2b2b;
+    border-radius:16px;
+    padding:24px;
+}
+
+.stat-card h2{
+    font-size:2rem;
+    margin-bottom:8px;
+}
+
+.stat-card p{
+    color:#9a9a9a;
+}
+
+.quick-actions,
+.recent-activity{
+    background:#181818;
+    border:1px solid #2b2b2b;
+    border-radius:16px;
+    padding:24px;
+}
+
+.quick-buttons{
+    display:flex;
+    gap:16px;
+    margin-top:20px;
+}
+
+.quick-buttons button{
+    padding:12px 22px;
+    border:none;
+    border-radius:10px;
+    background:#c58b2a;
+    color:white;
+    cursor:pointer;
+}
+
+.quick-buttons button:hover{
+    opacity:.9;
+}
+
+.recent-activity ul{
+    margin-top:18px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    list-style:none;
+}
+
+.admin-page{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.primary-btn{
+    background:#c58b2a;
+    color:white;
+    border:none;
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.toolbar input{
+    width:350px;
+    background:#181818;
+    border:1px solid #2b2b2b;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+}
+
+.election-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.election-admin-card{
+    background:#181818;
+    border:1px solid #2b2b2b;
+    border-radius:16px;
+    padding:22px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.election-admin-card h2{
+    margin-bottom:10px;
+}
+
+.election-admin-card p{
+    color:#999;
+    margin-top:4px;
+}
+
+.status{
+    display:inline-block;
+    margin-bottom:12px;
+    padding:4px 12px;
+    border-radius:50px;
+    font-size:.8rem;
+}
+
+.status.active{
+    background:#12351f;
+    color:#5ff39b;
+}
+
+.status.scheduled{
+    background:#4a340d;
+    color:#ffc857;
+}
+
+.status.ended{
+    background:#333;
+    color:#bbb;
+}
+
+.card-actions{
+    display:flex;
+    gap:10px;
+}
+
+.card-actions button{
+    padding:10px 16px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.card-actions .danger{
+    background:#b91c1c;
+    color:white;
+}
+
+.admin-modal{
+    width:700px;
+    max-width:95%;
+    background:#181818;
+    border-radius:18px;
+    padding:30px;
+    border:1px solid #2b2b2b;
+}
+
+.admin-modal form{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-top:20px;
+}
+
+.admin-modal input,
+.admin-modal textarea{
+    background:#101010;
+    color:white;
+    border:1px solid #333;
+    border-radius:10px;
+    padding:12px;
+}
+
+.admin-modal textarea{
+    resize:vertical;
+    min-height:100px;
+}
+
+.candidate-row{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr auto;
+    gap:10px;
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+}
+
+/* ===========================
+   CREATE ELECTION MODAL
+=========================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.create-election-modal {
+  width: 900px;
+  max-width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #171717;
+  border: 1px solid #2c2c2c;
+  border-radius: 16px;
+  padding: 28px;
+  color: white;
+  box-shadow: 0 25px 70px rgba(0,0,0,.45);
+}
+
+/* Scrollbar */
+
+.create-election-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.create-election-modal::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 20px;
+}
+
+.create-election-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Header */
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.modal-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.modal-header button {
+  background: transparent;
+  border: none;
+  color: #aaa;
+  font-size: 22px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.modal-header button:hover {
+  color: white;
+}
+
+/* Form */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  color: #bdbdbd;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  background: #222;
+  color: white;
+  border: 1px solid #353535;
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline: none;
+  transition: .25s;
+  font-size: 15px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #3b82f6;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #2d2d2d;
+  margin: 30px 0;
+}
+
+/* Candidates */
+
+.candidate-box {
+  background: #1f1f1f;
+  border: 1px solid #303030;
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.candidate-box input,
+.candidate-box textarea {
+  width: 100%;
+  margin-top: 12px;
+  background: #262626;
+  border: 1px solid #383838;
+  color: white;
+  border-radius: 10px;
+  padding: 11px 14px;
+  outline: none;
+}
+
+.candidate-box textarea {
+  min-height: 80px;
+}
+
+.candidate-box input:focus,
+.candidate-box textarea:focus {
+  border-color: #3b82f6;
+}
+
+.candidate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.candidate-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Buttons */
+
+.primary-btn,
+.secondary-btn,
+.danger-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 11px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: .2s;
+}
+
+.primary-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.primary-btn:hover {
+  background: #1d4ed8;
+}
+
+.secondary-btn {
+  background: #2b2b2b;
+  color: white;
+  margin-top: 18px;
+}
+
+.secondary-btn:hover {
+  background: #3b3b3b;
+}
+
+.danger-btn {
+  background: #dc2626;
+  color: white;
+}
+
+.danger-btn:hover {
+  background: #b91c1c;
+}
+
+/* Footer */
+
+.modal-footer {
+  margin-top: 35px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .create-election-modal {
+    padding: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+  }
+
+  .modal-footer button {
+    width: 100%;
+  }
+}

@@ -19,6 +19,15 @@ export const electionAPI = {
 
   results: (id) =>
     api.get(`/elections/${id}/results`),
+
+  create: (data) =>
+  api.post("/elections", data),
+
+  update: (id, data) =>
+    api.put(`/elections/${id}`, data),
+
+  delete: (id) =>
+    api.delete(`/elections/${id}`),
 };
 
 export const userAPI = {
