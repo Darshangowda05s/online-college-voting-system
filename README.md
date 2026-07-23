@@ -129,3 +129,4 @@ VITE_API_URL=http://localhost:5000/api
 ## Contact
 
 For development questions, inspect `server/src/` and `client/src/` source files.
+
