@@ -68,6 +68,16 @@ npm run dev
 
 The server starts on the port defined in `.env`.
 
+### Swagger API docs
+
+Once the backend is running, open the Swagger UI at:
+
+```text
+http://localhost:5000/api/docs
+```
+
+The OpenAPI specification is also available in the repo at `docs/openapi.yaml`.
+
 ### Start the frontend
 
 ```bash
